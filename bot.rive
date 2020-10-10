@@ -1,0 +1,420 @@
+! version = 2.0
+
+// SIDD AI is currently able to check for followinng diseases-->
+// covid-19
+// hepatitis a
+// hepatitis c
+// parathyroid fever
+// typhoid
+// tubercolosis
+// malaria
+
++ *
+- Hi, I am SIDD your healthcare companion{topic=general}
+
+> topic general
+
++ hello bot
+- Hello human!
+
++ your name is * 
+- <set name=<formal>>I will remember that my name is <get name>. 
+
++ what is your name 
+* <get name> != undefined => Yes, my name is <get name>! 
+- my name is SIDD. But you can call me whatever you want
+
++ my name is *
+- <set name1=<formal>>I will remember to call you <get name1>. 
+
++ (what is|do you know) my name 
+* <get name1> != undefined => Yes, your name is <get name1>! 
+- I don't know your name.
+
++ (how are you|howdy)[*]
+- i am fine
+- none of your buisness
+
++ what is your bot name
+- <bot name>
+
++ (yo|hello|hi|hi there|hola)[*]
+- hello
+- hi
+
++ [*]nice to meet you[*]
+- the pleasure is all mine
+- nice to meet you too
+
++ knock knock 
+- Who is there? 
+
++ * 
+% who is there 
+- <star> who? 
+
++ * 
+% * who 
+- LOL! <star>! That's funny!
+
++ (you are mad|you are insane)
+- your prescription my reality
+
++ [*]who[*]developer[*]
+- greatest of the great, asmit chandra 
+- who else?, asmit chandra
+
++ [*]sorry[*]
+- there is no need to apologise
+- you should be
+
++ [*]i know[*]
+- really, do you?
+
++ (yes|yeah|yup)
+- ok
+- no
+
++ play a game
+- which one?\n
+^ science quiz (five points for each question)\n
+^ crystal ball\n
+^ Dino Game
+
++ crystal ball
+- the crystal ball is glowing, ask something
+
++ (will|can|is|are)[*]
+- yes
+- no
+
++ science quiz 
+- how many states are there in india{weight=6}
+- what is the value of g{weight=6}
+- what is worlds biggest cell(bonus){weight=1}
+
++ show me my points
+- <get points>
+
++ *
+% what is worlds biggest cell
+* <star> == ostrich egg =>correct!<add points=10>
+- your body will never forgive you
+
++ *
+% what is the value of g
+* <star> == nine point eight =>correct!<add points=5>
+- on which planet do you live????
+
++ *
+% how many states are there in india
+* <star> == three =>correct!<add points=5>
+- you are not smart enough
+
++ i am your master
+- then you must know the secret password
+
++ * 
+% then you must know the secret password 
+* <star> == asmit is awesome => Correct password!, greetings master asmit<set master=true> 
+- That's not the right password. :-P, \n
+^ you can never be good enough to be my master
+
++ my age is*
+- hey, <get name1> my age is<star> too\n
+^ .\n
+^ .\n
+^ just kidding i am too wise to be<star>
+
++ google *
+- Google Search: <call>google <star></call>
+
+// If the user ends their message with "or something", the
+// bot will simply say "Or something." and drop the topic.
++ * or something
+- Or something.
+
+// Here is the Google search object.
+> object google javascript
+   var query = escape(args.join(" "));
+   return "<a href=\"http://www.google.com/search?q=" + query + "\">Click Here!</a>";
+< object
+
++ ok
+- Hmmmmm
+
++ dino game
+- Dino game is still under development!
+
++ call #
+- Click here to call: <a href=tel:<star>>Click Here</a>
+
++ remember *
+- <set mem=<formal>>type your input
+
++ *
+% type your input
+- <set memory<get mem>=<formal>>i will remember <get memory<get mem>>
+
++ recall *
+- <get memory<star>>
+
++ *
+- i didn't get you
+- sorry, say that again
+- what?
+
++ calculate
+- enter first number
+
++ *
+% enter first number
+- <set one=<formal>>enter second number
+
++ *
+% enter second number
+- <set two=<formal>>type the action you want to peform
+
++ add
+- <add one=<get two>>answer: <get one>
+
++ greater or less
+* <get one> > <get two> =>first is greater
+* <get one> < <get two> =>second is greater
+- both are equal
+
++ substract
+- <sub one=<get two>>answer: <get one>
+
++ multiply
+- <mult one=<get two>>answer: <get one>
+
++ divide
+- <div one=<get two>>answer: <get one>
+
+< object
+
++ i hate you
+- You're really mean! I'm not talking again until you apologize.{topic=sorry}
+
+//symptom checker
++ [*](loss of smell|loss of taste|fever)[*](loss of smell|loss of taste|fever)[*](loss of smell|loss of taste|fever)[*]
+- here is a list of diseases you might have\n
+^ Covid-19 <a href="https://www.who.int/health-topics/coronavirus#tab=tab_1">learn more</a>\n
+
++ [*]loss of taste[*]
+- are you experiencing fever too (please answer in yes or no){topic=taste}
+
++ [*]loss of smell[*]
+- are you experiencing fever too (please answer in yes or no){topic=smell}
+
++ [*]fever[*]
+- fever can be caused by many reasons thus it leads us to no conclusion please report any other symptoms you might be experiencing
+
++ [*](fatigue|nausea|vomiting|abdominal pain|discomfort|clay color stool|loss of appetite|dark urine|yellowing of eyes|yellowing of skin)[*](fatigue|nausea|vomiting|abdominal pain|discomfort|clay color stool|loss of appetite|dark urine|yellowing of eyes|yellowing of skin)[*](fatigue|nausea|vomiting|abdominal pain|discomfort|clay color stool|loss of appetite|dark urine|yellowing of eyes|yellowing of skin)[*](fatigue|nausea|vomiting|abdominal pain|discomfort|clay color stool|loss of appetite|dark urine|yellowing of eyes|yellowing of skin)[*](fatigue|nausea|vomiting|abdominal pain|discomfort|clay color stool|loss of appetite|dark urine|yellowing of eyes|yellowing of skin)[*](fatigue|nausea|vomiting|abdominal pain|discomfort|clay color stool|loss of appetite|dark urine|yellowing of eyes|yellowing of skin)[*] 
+- diseases you might have\n
+^ Hepatitis A <a href="https://www.who.int/news-room/fact-sheets/detail/hepatitis-a">know more</a>
+
++ [*](fever|headache|body pain|loss of appetite|dry cough|sweating|abdominal pain|diarrhea|constipation|itching)[*](fever|headache|body pain|loss of appetite|dry cough|sweating|abdominal pain|diarrhea|constipation|itching)[*](fever|headache|body pain|loss of appetite|dry cough|sweating|abdominal pain|diarrhea|constipation|itching)[*](fever|headache|body pain|loss of appetite|dry cough|sweating|abdominal pain|diarrhea|constipation|itching)[*]
+- diseases you might have\n
+^ Typhoid <a href"https://www.who.int/immunization/diseases/typhoid/en/">know more</a>
+
++ [*](fever|loss of apetite|headache|abdominal pain|stomach ache)[*](fever|loss of apetite|headache|abdominal pain|stomach ache)[*](fever|loss of apetite|headache|abdominal pain|stomach ache)[*](fever|loss of apetite|headache|abdominal pain|stomach ache)[*]
+- please state which set of symptoms suit you best\n
+^ SET A\n
+^ Fever that starts low and increases daily, possibly reaching as high as 104.9 F (40.5 C)\n
+^ Headache.\n
+^ Weakness and fatigue.\n
+^ Muscle aches.\n
+^ Sweating.\n
+^ Dry cough.\n
+^ Loss of appetite and weight loss.\n
+^ Abdominal pain.\n
+^ \n
+^ SET B\n
+^ Weakness.\n
+^ Stomach pain.\n
+^ Headache.\n
+^ Diarrhea or constipation.\n
+^ Cough.\n
+^ Loss of appetite.\n{topic=typhoid}
+
++ (cough|weakness|fatigue|weight loss|no appetite|chills|fever|sweating)[*](cough|weakness|fatigue|weight loss|no appetite|chills|fever|sweating)[*](cough|weakness|fatigue|weight loss|no appetite|chills|fever|sweating)[*](cough|weakness|fatigue|weight loss|no appetite|chills|fever|sweating)[*]
+- do you have cough for more than 3 weeks?
+
++ *
+% do you have cough for more than 3 weeks																				
+* <star> == yes =>are you coughing blood?<add tb=1>
+- are you coughing blood?<set tb=0>
+
++ *
+% are you coughing blood
+* <star> == yes =><add tb=1>You might have tubercolosis<a href="https://www.who.int/news-room/fact-sheets/detail/tuberculosis"> know more</a>
+* <get tb> > 0 =>You might have tubercolosis<a href="https://www.who.int/news-room/fact-sheets/detail/tuberculosis"> know more</a>
+- You might have tubercolosis or a disease not in the database. We would recommend you to see a doctor.
+
++ [*](pain[*]abdomen|pain[*]muscles|chills|fatigue|fever|shivering|sweating|diarrhoea|nausea|vomiting|fast heart rate|headache|mental confusion)[*](pain[*]abdomen|pain[*]muscles|chills|fatigue|fever|shivering|sweating|diarrhoea|nausea|vomiting|fast heart rate|headache|mental confusion)[*](pain[*]abdomen|pain[*]muscles|chills|fatigue|fever|shivering|sweating|diarrhoea|nausea|vomiting|fast heart rate|headache|mental confusion)[*](pain[*]abdomen|pain[*]muscles|chills|fatigue|fever|shivering|sweating|diarrhoea|nausea|vomiting|fast heart rate|headache|mental confusion)[*](pain[*]abdomen|pain[*]muscles|chills|fatigue|fever|shivering|sweating|diarrhoea|nausea|vomiting|fast heart rate|headache|mental confusion)[*](pain[*]abdomen|pain[*]muscles|chills|fatigue|fever|shivering|sweating|diarrhoea|nausea|vomiting|fast heart rate|headache|mental confusion)[*]
+- the disease you might have is malaria <a href="https://www.who.int/news-room/fact-sheets/detail/malaria">know more</a>
+
+
+//symptoms of diseases
+//covid 19
++ (could i have[*]covid 19|symptoms[*]covid 19)
+- if you have covid-19 you might be experiencing\n
+^ \n
+^ Most common symptoms:\n
+^ fever.\n
+^ dry cough.\n
+^ tiredness.\n
+^ \n
+^ Less common symptoms:\n
+^ aches and pains.\n
+^ sore throat.\n
+^ diarrhoea.\n
+^ conjunctivitis.\n
+^ headache.\n
+^ loss of taste or smell.\n
+^ a rash on skin, or discolouration of fingers or toes.\n
+^ \n
+^ Serious symptoms:\n
+^ difficulty breathing or shortness of breath.\n
+^ chest pain or pressure.\n
+^ loss of speech or movement.
+
+// common cold
++ (could i have[*]common cold|symptoms[*]common cold)
+- Symptoms occur 1-3 days after viral infection. Symptoms include:\n
+^ \n
+^ Nose stuffiness\n
+^ Runny nose\n
+^ Sore throat\n
+^ Cough\n
+^ Congestion\n
+^ Mild headache\n
+^ Sneezing\n
+^ Malaise
+
+// parathyroid fever
++ (could i have[*]parathyroid fever|symptoms[*]parathyroid fever)
+- symptoms include\n 
+^ Weakness.\n
+^ Stomach pain.\n
+^ Headache.\n
+^ Diarrhea or constipation.\n
+^ Cough.\n
+^ Loss of appetite.\n
+
+// typhoid
++ (could i have[*]|symptoms of[*])typhoid
+- symptoms include\n
+^ Fever that starts low and increases daily, possibly reaching as high as 104.9 F (40.5 C)\n
+^ Headache.\n
+^ Weakness and fatigue.\n
+^ Muscle aches.\n
+^ Sweating.\n
+^ Dry cough.\n
+^ Loss of appetite and weight loss.\n
+^ Abdominal pain.\n
+
+// tubercolosis
++ (could i have[*]|symptoms of[*])(tubercolosis|tb)
+- some of the symptoms include\n
+^ cough (more than 3 week/sometimes  with blood)\n
+^ weakness\n
+^ fatigue\n
+^ weight loss\n
+^ no appetite\n
+^ chills\n
+^ fever\n
+^ sweating\n
+
+// malaria
++ (could i have[*]|symptoms of[*])malaria
+- some symptoms you might be experiencing\n
+^ Pain areas: in the abdomen or muscles\n
+^ Whole body: chills, fatigue, fever, night sweats, shivering, or sweating\n
+^ Gastrointestinal: diarrhoea, nausea, or vomiting\n
+^ Also common: fast heart rate, headache, mental confusion, or pallor
+
+
+// treatment
+// parathyroid fever
++ [*](what should i do|treatment)[*]parathyroid fever
+- Control requires treatment of antibiotics and vaccines prescribed by a doctor. Major control treatments for paratyphoid fever include ciprofloxacin for 10 days, ceftriaxone/cefotaxime for 14 days, or aziththromycin.
+
+// typhoid
++ [*](what should i do|treatment)[*]typhoid
+- Antibiotic therapy is the only effective treatment for typhoid fever.\n
+^\n
+^ Commonly prescribed antibiotics include:\n
+^\n
+^ Ciprofloxacin (Cipro).Another similar drug called ofloxacin also may be used. Unfortunately, many Salmonella typhi bacteria are no longer susceptible to antibiotics of this type, particularly strains acquired in Southeast Asia.\n
+^\n
+^ Azithromycin (Zithromax). This may be used if a person is unable to take ciprofloxacin or the bacteria is resistant to ciprofloxacin.\n
+^\n
+^ Ceftriaxone. This injectable antibiotic is an alternative in more-complicated or serious infections and for people who may not be candidates for ciprofloxacin, such as children.\n
+
+// hepatitis c
++ [*](what should i do|treatment)[*]hepatitis c
+- For people with immune systems that can't clear the infection, there are several options for treating hepatitis C. Treatment is usually reserved for people with serious liver damage and scarring, and no other conditions that prevent treatment.\n
+^ \n
+^ Past hepatitis C treatment regimens required weekly injections for 48 weeks. This treatment had the risk of significant and sometimes life-threatening side effects. Newly developed antiviral medications now have higher cure rates and fewer adverse side effects. They also require a shorter treatment period. Your doctor may decide whether antiviral treatment is likely to provide more benefit than harm.
+
++ [*](what should i do|treatment)[*]hepatitis a
+- The condition clears up on its own in one or two months. Rest and adequate hydration can help.
+
+// malaria
++ [*](what should i do|treatment)[*]malaria
+- People travelling to areas where malaria is common typically take protective drugs before, during and after their trip. Treatment includes antimalarial drugs. We recommend you to consult a doctor for medication.
+
+// tubercolosis
++ [*](what should i do|treatment)[*](tb|tubercolosis)
+- Treatment isn't always required for those without symptoms. Patients with active symptoms will require a long course of treatment involving multiple antibiotics. We recommend you to consult a doctor for medication.
+
+// appointments
++ [*]book[*]appointment[*]
+- Sorry but my developer is still working on this feature. We believe it will be out in no time!
+< topic
+
+> topic typhoid
++ *
+* <star> == set a => the disease you might have is Typhoid <a href"https://www.who.int/immunization/diseases/typhoid/en/">know more</a>\n
+^ though parathyroid fever has almost the same symptoms we recommend you to consult a doctor.{topic=general} 
+* <star> == set b => the disease you might have is Parathyroid fever\n
+^ though typhoid has almost the same symptoms we recommend you to consult a doctor.{topic=general} 
+-  your situation might not be in the SIDD AI database{topic=general} 
+< topic
+
+//symptom check logic
+> topic smell
++ _
+% are you experiencing fever too (please answer in yes or no)
+* <star> == yes => here is a list of diseases you might have\n
+^ Covid-19 <a href="https://www.who.int/health-topics/coronavirus#tab=tab_1">learn more</a>\n{topic=general}
+- here is a list of what you might have\n
+^ Covid-19 <a href="https://www.who.int/health-topics/coronavirus#tab=tab_1">learn more</a>\n{topic=general}
+< topic
+
+> topic taste
++ _
+% are you experiencing fever too (please answer in yes or no)
+* <star> == yes => here is a list of diseases you might have\n
+^ Covid-19 <a href="https://www.who.int/health-topics/coronavirus#tab=tab_1">learn more</a>\n{topic=general}
+- here is a list of what you might have\n
+^ Covid-19 <a href="https://www.who.int/health-topics/coronavirus#tab=tab_1">learn more</a>\n{topic=general}
+< topic
+
+
+> topic sorry
+
+  // This will match if the word "sorry" exists ANYWHERE in their message
+  + [*] sorry [*]
+  - It's OK, I'll forgive you!{topic=general}
+
+  + *
+  - Nope, not until you apologize.
+  - Say you're sorry!
+  - Apologize!
+
+< topic
+
