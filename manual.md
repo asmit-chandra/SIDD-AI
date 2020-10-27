@@ -9,7 +9,7 @@ SIDD AI is loaded with basic small talk skill like hi, howdy, knock knock jokes.
 3. Parathyroid fever
 4. Hepatitis A
 5. Hepatitis C
-6. Tubercolosis
+6. Tuberculosis
 7. Malaria
 * These diseases were selected because of their spread in India.
 * To know the symptoms of a particular disease type 'symptoms of (disease)'. For eg- symptoms of typhoid. [Note- diseases like Covid-19 have to be written as Covid 19]
